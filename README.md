@@ -1,4 +1,4 @@
 
 # Tulin Website
 
-design guide
+Design guide
