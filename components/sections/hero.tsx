@@ -37,15 +37,14 @@ export function Hero() {
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 pt-24 pb-8 w-full">
         <div className="text-center mb-12">
-
           {/* Headline */}
           <h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-bold tracking-tight leading-[1.08] mb-5"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.5rem]  lg:leading-[1.3] font-bold tracking-tight leading-[1.3] mb-5"
             style={{ color: tokens.text }}
           >
-            <TextReveal text="One platform to run" delay={80} />
+            <TextReveal text="Community management" delay={80} />
             <br />
-            <TextReveal text="every community." delay={280} />
+            <TextReveal text="that actually works." delay={280} />
           </h1>
 
           {/* Description */}
@@ -54,14 +53,13 @@ export function Hero() {
               className="text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-4"
               style={{ color: tokens.text, opacity: 0.65 }}
             >
-              Tulin replaces fragmented tools with a single intelligent platform
-              for{' '}
+              Tulin handles everything for{' '}
               <TypeWriter
                 words={[
                   'gated communities.',
                   'apartment complexes.',
                   'property managers.',
-                  'real estate developers.',
+                  'HOA boards.',
                 ]}
                 style={{ color: tokens.text, fontWeight: 600, opacity: 1 }}
               />
@@ -73,9 +71,9 @@ export function Hero() {
               className="text-sm max-w-lg mx-auto leading-relaxed mb-8"
               style={{ color: tokens.text, opacity: 0.45 }}
             >
-              Resident onboarding, maintenance billing, vendor management, and
-              real-time analytics — all unified in one platform. Built for
-              scale, priced for growth.
+              One place for residents, billing, maintenance tickets, and vendor
+              tracking. No spreadsheets, no integration headaches, no learning
+              curve.
             </p>
           </Reveal>
 
@@ -85,7 +83,7 @@ export function Hero() {
               <div className="relative flex-1 w-full">
                 <input
                   type="email"
-                  placeholder="Enter your work email"
+                  placeholder="Where should we reach you?"
                   className="w-full backdrop-blur-sm rounded-full px-5 py-2.5 text-sm outline-none transition-all"
                   style={{
                     background: tokens.inputBg,
@@ -100,7 +98,7 @@ export function Hero() {
                 className="group text-[13px] font-medium px-5 py-2.5 rounded-full inline-flex items-center gap-2 whitespace-nowrap flex-shrink-0"
                 style={{ background: tokens.btnBg, color: tokens.btnText }}
               >
-                Get a Demo
+                Show me how it works
                 <svg
                   width="12"
                   height="12"
@@ -120,41 +118,16 @@ export function Hero() {
           </Reveal>
 
           {/* Trust Badges */}
-          <Reveal delay={820}>
-            <div className="mt-8 flex items-center justify-center gap-3 flex-wrap">
-              {['No Setup Fees', '14-Day Free Trial', 'Cancel Anytime'].map(
-                (text, i) => (
-                  <span
-                    key={i}
-                    className="inline-flex items-center gap-1.5 text-[11px] font-medium px-3 py-1 rounded-full backdrop-blur-sm"
-                    style={{
-                      color: tokens.textFaint,
-                      background:
-                        resolvedTheme === 'dark'
-                          ? 'rgba(255,255,255,0.04)'
-                          : 'rgba(255,255,255,0.6)',
-                      border: `1px solid ${tokens.border}`,
-                    }}
-                  >
-                    <svg
-                      width="10"
-                      height="10"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="text-emerald-500"
-                    >
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    {text}
-                  </span>
-                ),
-              )}
+          {/* <Reveal delay={820}>
+            <div className="mt-8">
+              <p
+                className="text-xs text-center"
+                style={{ color: tokens.textFaint }}
+              >
+                No credit card. No pressure. Just a real conversation about what you need.
+              </p>
             </div>
-          </Reveal>
+          </Reveal> */}
         </div>
 
         {/* Dashboard Preview */}
@@ -227,146 +200,138 @@ export function Hero() {
                 </div>
 
                 {/* Dashboard Content */}
-                <div className="p-5 sm:p-6">
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center">
-                        <span className="text-white text-[10px] font-bold">
+                <div className="p-4 sm:p-5">
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center">
+                        <span className="text-white text-[9px] font-bold">
                           T
                         </span>
                       </div>
                       <div>
                         <div
-                          className="text-xs font-semibold"
+                          className="text-[11px] font-semibold"
                           style={{ color: tokens.text }}
                         >
                           Tulin Homes
                         </div>
                         <div
-                          className="text-[10px]"
+                          className="text-[9px]"
                           style={{ color: tokens.textFaint }}
                         >
                           Dashboard
                         </div>
                       </div>
                     </div>
-                    <div className="bg-indigo-500/10 text-indigo-400 text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
-                      Demo Mode
+                    <div className="bg-indigo-500/10 text-indigo-400 text-[8px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                      Live Demo
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-4 gap-3 mb-5">
+                  {/* Quick Stats */}
+                  <div className="grid grid-cols-4 gap-2 mb-4">
                     {[
-                      { label: 'Residents', icon: '👥', desc: 'Manage' },
-                      { label: 'Billing', icon: '💳', desc: 'Automate' },
-                      { label: 'Tickets', icon: '🔧', desc: 'Track' },
-                      { label: 'Reports', icon: '📊', desc: 'Analyze' },
-                    ].map((item, i) => (
+                      { label: 'Units', value: '156', icon: '🏠' },
+                      { label: 'Active', value: '142', icon: '👥' },
+                      { label: 'Tickets', value: '8', icon: '🔧' },
+                      { label: 'Revenue', value: '$24K', icon: '💰' },
+                    ].map((stat, i) => (
                       <div
                         key={i}
-                        className="rounded-xl p-3 sm:p-3.5 transition-colors cursor-pointer"
+                        className="rounded-lg p-2.5 sm:p-3"
                         style={{ background: tokens.bgSurface }}
                       >
-                        <div className="text-sm mb-1.5">{item.icon}</div>
                         <div
-                          className="text-xs sm:text-sm font-bold"
-                          style={{ color: tokens.text, opacity: 0.7 }}
-                        >
-                          {item.label}
-                        </div>
-                        <div
-                          className="text-[10px] mt-0.5"
+                          className="text-[10px] mb-1"
                           style={{ color: tokens.textFaint }}
                         >
-                          {item.desc}
+                          {stat.label}
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <span
+                            className="text-xs sm:text-sm font-bold"
+                            style={{ color: tokens.text }}
+                          >
+                            {stat.value}
+                          </span>
+                          <span className="text-[10px]">{stat.icon}</span>
                         </div>
                       </div>
                     ))}
                   </div>
 
-                  <div className="grid sm:grid-cols-5 gap-4">
+                  {/* Recent Activity */}
+                  <div
+                    className="rounded-lg p-3 sm:p-4"
+                    style={{ background: tokens.bgSurface }}
+                  >
                     <div
-                      className="sm:col-span-3 rounded-xl p-4"
-                      style={{ background: tokens.bgSurface }}
+                      className="text-[9px] font-semibold uppercase tracking-wider mb-3"
+                      style={{ color: tokens.textMuted }}
                     >
-                      <div className="flex items-center justify-between mb-4">
-                        <span
-                          className="text-[10px] font-semibold uppercase tracking-wider"
-                          style={{ color: tokens.textMuted }}
+                      Recent Activity
+                    </div>
+                    <div className="space-y-2.5">
+                      {[
+                        {
+                          action: 'Payment received',
+                          user: 'Unit 204',
+                          time: '2m ago',
+                          status: 'success',
+                        },
+                        {
+                          action: 'Maintenance ticket',
+                          user: 'Unit 156',
+                          time: '15m ago',
+                          status: 'pending',
+                        },
+                        {
+                          action: 'New resident added',
+                          user: 'Unit 89',
+                          time: '1h ago',
+                          status: 'info',
+                        },
+                      ].map((activity, i) => (
+                        <div
+                          key={i}
+                          className="flex items-center justify-between"
                         >
-                          How It Works
-                        </span>
-                      </div>
-                      <div className="space-y-3">
-                        {[
-                          {
-                            step: '1',
-                            title: 'Onboard your community',
-                            desc: 'Add units, residents & staff in minutes',
-                          },
-                          {
-                            step: '2',
-                            title: 'Automate operations',
-                            desc: 'Billing, ticketing & vendor management',
-                          },
-                          {
-                            step: '3',
-                            title: 'Track everything',
-                            desc: 'Real-time dashboards & smart reports',
-                          },
-                        ].map((item, i) => (
-                          <div key={i} className="flex items-start gap-3">
-                            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm">
-                              <span className="text-white text-[9px] font-bold">
-                                {item.step}
-                              </span>
-                            </div>
+                          <div className="flex items-center gap-2">
+                            <div
+                              className="w-1.5 h-1.5 rounded-full"
+                              style={{
+                                background:
+                                  activity.status === 'success'
+                                    ? '#10b981'
+                                    : activity.status === 'pending'
+                                      ? '#f59e0b'
+                                      : '#6366f1',
+                              }}
+                            />
                             <div>
                               <div
-                                className="text-[11px] font-semibold"
-                                style={{ color: tokens.textMuted }}
+                                className="text-[10px] font-medium"
+                                style={{ color: tokens.text }}
                               >
-                                {item.title}
+                                {activity.action}
                               </div>
                               <div
-                                className="text-[10px]"
+                                className="text-[9px]"
                                 style={{ color: tokens.textFaint }}
                               >
-                                {item.desc}
+                                {activity.user}
                               </div>
                             </div>
                           </div>
-                        ))}
-                      </div>
-                    </div>
-                    <div
-                      className="sm:col-span-2 rounded-xl p-4"
-                      style={{ background: tokens.bgSurface }}
-                    >
-                      <span
-                        className="text-[10px] font-semibold uppercase tracking-wider block mb-3"
-                        style={{ color: tokens.textMuted }}
-                      >
-                        Why Tulin
-                      </span>
-                      <div className="space-y-3">
-                        {[
-                          { icon: '⚡', text: 'Go live in under a week' },
-                          { icon: '🔒', text: 'Bank-grade security' },
-                          { icon: '📱', text: 'Works on any device' },
-                          { icon: '🔗', text: 'API-first architecture' },
-                        ].map((item, i) => (
-                          <div key={i} className="flex items-center gap-2.5">
-                            <span className="text-[11px]">{item.icon}</span>
-                            <span
-                              className="text-[11px]"
-                              style={{ color: tokens.textMuted }}
-                            >
-                              {item.text}
-                            </span>
+                          <div
+                            className="text-[9px]"
+                            style={{ color: tokens.textFaint }}
+                          >
+                            {activity.time}
                           </div>
-                        ))}
-                      </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>

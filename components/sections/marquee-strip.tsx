@@ -17,15 +17,15 @@ export function MarqueeStrip() {
     >
       <Marquee
         items={[
-          "Community Management",
-          "Gated Communities",
-          "Property Tech",
-          "IoT Infrastructure",
-          "Solar Energy",
-          "SaaS Platform",
-          "Smart Buildings",
-          "Resident Experience",
-          "Maintenance Automation",
+          "Resident Onboarding",
+          "Maintenance Billing",
+          "Vendor Tracking",
+          "Gate Access Control",
+          "Solar Subscriptions",
+          "Leak Detection",
+          "HOA Management",
+          "Payment Collection",
+          "Work Order Routing",
         ]}
       />
     </div>

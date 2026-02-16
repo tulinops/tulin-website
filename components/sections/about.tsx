@@ -2,18 +2,17 @@
 
 import { useTheme } from "@/contexts/theme-context"
 import { Reveal } from "@/components/shared/reveal"
-import { TiltCard } from "@/components/shared/tilt-card"
 import { Orb } from "@/components/shared/orb"
-import { Eye, Target } from "lucide-react"
+import { Eye } from "lucide-react"
 
 const cards = [
   {
-    title: "Vision",
+    title: "What We Believe",
     icon: <Eye size={18} className="text-indigo-400" strokeWidth={1.5} />,
-    desc: "To build scalable, technology-driven platforms that modernize community management, infrastructure operations, and energy ecosystems.",
+    desc: "Property managers shouldn&apos;t need a computer science degree to run their communities. Good software is invisible — it just works.",
   },
   {
-    title: "Mission",
+    title: "What We Build",
     icon: (
       <svg
         width="18"
@@ -29,7 +28,7 @@ const cards = [
         <circle cx="12" cy="12" r="2" />
       </svg>
     ),
-    desc: "To deliver secure, modular, and reliable SaaS platforms that simplify real-world operations while maintaining strong architecture and long-term scalability.",
+    desc: "Software that solves actual problems instead of adding new ones. Starting with communities, expanding to solar and IoT when we get it right.",
   },
 ]
 
@@ -59,9 +58,9 @@ export function About() {
             className="text-4xl sm:text-5xl font-bold tracking-tight mb-5 leading-[1.1]"
             style={{ color: tokens.text }}
           >
-            Built for scale.
+            We&apos;re fixing what&apos;s broken
             <br />
-            Designed for clarity.
+            in community management.
           </h2>
         </Reveal>
 
@@ -70,119 +69,109 @@ export function About() {
             className="text-lg max-w-lg mb-20 leading-relaxed"
             style={{ color: tokens.textFaint }}
           >
-            Tulin is a SaaS-first technology company digitizing community management, infrastructure
-            operations, and energy ecosystems.
+            Started after watching too many property managers drown in spreadsheets and WhatsApp groups.
+            We think software should make their lives easier, not add another subscription to ignore.
           </p>
         </Reveal>
 
-        <div className="grid md:grid-cols-2 gap-5">
-          {/* Vision & Mission */}
+        {/* Narrative Flow */}
+        <div className="space-y-16">
           {cards.map((card, i) => (
-            <Reveal key={i} delay={i * 80}>
-              <TiltCard className="h-full">
-                <div
-                  className="rounded-[28px] p-8 sm:p-10 h-full transition-colors duration-700"
-                  style={{
-                    background: tokens.bgCard,
-                    border: `1px solid ${tokens.border}`,
-                  }}
-                >
+            <Reveal key={i} delay={i * 100}>
+              <div className="max-w-2xl">
+                <div className="flex items-center gap-3 mb-4">
                   <div
-                    className="w-10 h-10 rounded-2xl flex items-center justify-center mb-7"
+                    className="w-10 h-10 rounded-xl flex items-center justify-center"
                     style={{ background: tokens.bgSurface }}
                   >
                     {card.icon}
                   </div>
                   <h3
-                    className="text-xl font-bold tracking-tight mb-3"
-                    style={{ color: tokens.text }}
+                    className="text-sm font-bold tracking-wider uppercase"
+                    style={{ color: tokens.textMuted }}
                   >
                     {card.title}
                   </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: tokens.textFaint }}>
-                    {card.desc}
-                  </p>
                 </div>
-              </TiltCard>
+                <p
+                  className="text-xl leading-relaxed"
+                  style={{ color: tokens.text, opacity: 0.9 }}
+                >
+                  {card.desc}
+                </p>
+              </div>
             </Reveal>
           ))}
 
-          {/* Revenue Model */}
-          <Reveal delay={160}>
-            <TiltCard className="h-full">
-              <div
-                className="rounded-[28px] p-8 sm:p-10 h-full transition-colors duration-700"
-                style={{
-                  background: tokens.bgCard,
-                  border: `1px solid ${tokens.border}`,
-                }}
-              >
-                <h3
-                  className="text-xl font-bold tracking-tight mb-7"
-                  style={{ color: tokens.text }}
-                >
-                  Revenue Model
-                </h3>
-                <div
-                  className="flex rounded-full overflow-hidden h-2.5 mb-4"
-                  style={{ background: tokens.bgSurface }}
-                >
-                  <div className="rounded-full" style={{ width: "70%", background: tokens.btnBg }} />
+          {/* Stats Grid */}
+          <Reveal delay={200}>
+            <div
+              className="rounded-[28px] p-10 sm:p-12"
+              style={{
+                background: tokens.bgCard,
+                border: `1px solid ${tokens.border}`,
+              }}
+            >
+              <div className="grid sm:grid-cols-2 gap-12">
+                {/* Revenue Model */}
+                <div>
+                  <h3
+                    className="text-sm font-bold tracking-wider uppercase mb-6"
+                    style={{ color: tokens.textMuted }}
+                  >
+                    How We Fund This
+                  </h3>
+                  <div
+                    className="flex rounded-full overflow-hidden h-3 mb-5"
+                    style={{ background: tokens.bgSurface }}
+                  >
+                    <div className="rounded-full" style={{ width: "70%", background: tokens.btnBg }} />
+                  </div>
+                  <div className="flex justify-between mb-6">
+                    <span className="text-sm font-semibold" style={{ color: tokens.text }}>
+                      SaaS — 70%
+                    </span>
+                    <span className="text-sm" style={{ color: tokens.textFaint }}>
+                      Consulting — 30%
+                    </span>
+                  </div>
+                  <p className="text-sm leading-relaxed" style={{ color: tokens.textFaint }}>
+                    We do consulting to fund product development. Eventually the products will pay for themselves.
+                    That&apos;s the plan, anyway.
+                  </p>
                 </div>
-                <div className="flex justify-between mb-6">
-                  <span className="text-xs font-medium" style={{ color: tokens.textMuted }}>
-                    SaaS Products — 70%
-                  </span>
-                  <span className="text-xs font-medium" style={{ color: tokens.textFaint }}>
-                    IT Services — 30%
-                  </span>
-                </div>
-                <p className="text-sm leading-relaxed" style={{ color: tokens.textFaint }}>
-                  Strategic revenue structure ensuring long-term recurring revenue with stable
-                  operational cash flow.
-                </p>
-              </div>
-            </TiltCard>
-          </Reveal>
 
-          {/* 3-5 Year Objectives */}
-          <Reveal delay={240}>
-            <TiltCard className="h-full">
-              <div
-                className="rounded-[28px] p-8 sm:p-10 h-full transition-colors duration-700"
-                style={{
-                  background: tokens.bgCard,
-                  border: `1px solid ${tokens.border}`,
-                }}
-              >
-                <h3
-                  className="text-xl font-bold tracking-tight mb-7"
-                  style={{ color: tokens.text }}
-                >
-                  3–5 Year Objectives
-                </h3>
-                <div className="space-y-5">
-                  {[
-                    "100+ paying SaaS customers",
-                    "Strong recurring revenue base",
-                    "Recognized infra-tech brand",
-                    "Reduced IT services dependency",
-                  ].map((goal, j) => (
-                    <div key={j} className="flex items-center gap-4">
-                      <span
-                        className="w-8 h-8 rounded-full flex items-center justify-center text-[11px] font-bold flex-shrink-0 tabular-nums"
-                        style={{ background: tokens.bgSurface, color: tokens.textFaint }}
-                      >
-                        0{j + 1}
-                      </span>
-                      <span className="text-sm" style={{ color: tokens.textMuted }}>
-                        {goal}
-                      </span>
-                    </div>
-                  ))}
+                {/* Goals */}
+                <div>
+                  <h3
+                    className="text-sm font-bold tracking-wider uppercase mb-6"
+                    style={{ color: tokens.textMuted }}
+                  >
+                    Next 3–5 Years
+                  </h3>
+                  <div className="space-y-4">
+                    {[
+                      "100+ communities running on Tulin",
+                      "Recurring revenue we can count on",
+                      "Known for solving real problems",
+                      "Less consulting, more product work",
+                    ].map((goal, j) => (
+                      <div key={j} className="flex items-start gap-3">
+                        <span
+                          className="text-xs font-bold mt-0.5"
+                          style={{ color: tokens.textFaint }}
+                        >
+                          {j + 1}.
+                        </span>
+                        <span className="text-sm leading-relaxed" style={{ color: tokens.textMuted }}>
+                          {goal}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </TiltCard>
+            </div>
           </Reveal>
         </div>
       </div>

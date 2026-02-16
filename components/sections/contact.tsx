@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { useTheme } from "@/contexts/theme-context"
 import { Reveal } from "@/components/shared/reveal"
-import { TiltCard } from "@/components/shared/tilt-card"
 import { MagBtn } from "@/components/shared/mag-btn"
 import { Orb } from "@/components/shared/orb"
 
@@ -88,16 +87,16 @@ export function Contact() {
                 className="text-4xl sm:text-4xl font-bold tracking-tight mb-5 leading-tight"
                 style={{ color: tokens.text }}
               >
-                Ready to digitize
+                Let&apos;s fix what&apos;s
                 <br />
-                your community?
+                broken in your workflow.
               </h2>
               <p
                 className="text-base leading-relaxed mb-14"
                 style={{ color: tokens.textFaint }}
               >
-                Schedule a demo to see how Tulin can streamline your operations and modernize your
-                infrastructure.
+                Tell us what&apos;s broken in your current setup. We&apos;ll show you how Tulin fixes it —
+                or be honest if it doesn&apos;t.
               </p>
               <div className="space-y-8">
                 {[
@@ -121,17 +120,16 @@ export function Contact() {
           </Reveal>
 
           <Reveal delay={150}>
-            <TiltCard>
-              <div
-                className="rounded-[28px] p-8 sm:p-10"
-                style={{
-                  background: tokens.bgCard,
-                  border: `1px solid ${tokens.border}`,
-                  boxShadow: `0 8px 40px ${
-                    resolvedTheme === "dark" ? "rgba(0,0,0,0.2)" : "rgba(0,0,0,0.03)"
-                  }`,
-                }}
-              >
+            <div
+              className="rounded-[28px] p-8 sm:p-10 transition-all duration-500 hover:scale-[1.01]"
+              style={{
+                background: tokens.bgCard,
+                border: `1px solid ${tokens.border}`,
+                boxShadow: `0 8px 40px ${
+                  resolvedTheme === "dark" ? "rgba(0,0,0,0.2)" : "rgba(0,0,0,0.03)"
+                }`,
+              }}
+            >
                 <div className="space-y-6">
                   {[
                     { key: "name", label: "Name", placeholder: "Your name", type: "text" },
@@ -143,8 +141,8 @@ export function Contact() {
                     },
                     {
                       key: "company",
-                      label: "Company",
-                      placeholder: "Your community or company",
+                      label: "Community",
+                      placeholder: "Which community are you managing?",
                       type: "text",
                     },
                   ].map((field) => (
@@ -184,7 +182,7 @@ export function Contact() {
                       onFocus={() => setFocused("message")}
                       onBlur={() => setFocused(null)}
                       rows={3}
-                      placeholder="Tell us about your needs..."
+                      placeholder="What&apos;s the biggest headache in your day-to-day?"
                       className="w-full bg-transparent text-sm py-3.5 border-b outline-none transition-all duration-500 resize-none"
                       style={{
                         color: tokens.text,
@@ -199,11 +197,10 @@ export function Contact() {
                     className="w-full text-sm font-medium py-3.5 rounded-full mt-2"
                     style={{ background: tokens.btnBg, color: tokens.btnText }}
                   >
-                    Request a Demo
+                    Let&apos;s talk
                   </MagBtn>
                 </div>
               </div>
-            </TiltCard>
           </Reveal>
         </div>
       </div>

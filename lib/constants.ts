@@ -21,19 +21,22 @@ export const TRANSITIONS = {
 // Product gradient configurations
 export const PRODUCT_GRADIENTS = {
   homes: {
-    gradient: 'from-indigo-500 to-violet-600',
-    accent: '99,102,241', // rgb(99,102,241) = indigo-500
+    gradient: 'from-green-500 to-emerald-600',
+    accent: '34,197,94', // rgb(34,197,94) = green-500
     letter: 'H',
+    icon: '🏠',
   },
   solar: {
     gradient: 'from-amber-400 to-orange-500',
     accent: '245,158,11', // rgb(245,158,11) = amber-500
     letter: 'S',
+    icon: '☀️',
   },
   iot: {
     gradient: 'from-cyan-400 to-blue-500',
     accent: '6,182,212', // rgb(6,182,212) = cyan-500
     letter: 'I',
+    icon: '📡',
   },
 } as const
 

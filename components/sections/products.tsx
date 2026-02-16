@@ -10,46 +10,46 @@ import { PRODUCT_GRADIENTS } from "@/lib/constants"
 const products = [
   {
     name: "Tulin Homes",
-    badge: "Flagship",
+    badge: "Available Now",
     flagship: true,
-    headline: "Community management, reimagined.",
-    desc: "The operating system for gated communities and apartment complexes. Manage residents, automate billing, resolve maintenance tickets, and track vendor performance — all from a single dashboard.",
+    headline: "Everything your community needs. One login.",
+    desc: "When a 150-unit community came to us juggling 4 spreadsheets, 3 email threads, and zero time to breathe — we built this. Now they onboard new residents in 5 minutes, bill maintenance automatically, and actually know which vendor fixed what.",
     features: [
       "Resident & unit management",
-      "Maintenance billing & payments",
-      "Ticketing system",
-      "Vendor & staff management",
-      "Analytics dashboard",
+      "Automatic billing & payments",
+      "Maintenance request tracking",
+      "Vendor performance history",
+      "Real-time analytics dashboard",
     ],
     ...PRODUCT_GRADIENTS.homes,
   },
   {
     name: "Tulin Solar",
-    badge: "Coming Soon",
+    badge: "In Development",
     flagship: false,
-    headline: "Energy ecosystems, simplified.",
-    desc: "Manage solar installations, energy billing, and performance monitoring at scale with a subscription-based model.",
+    headline: "Solar subscriptions without the paperwork chaos.",
+    desc: "Because managing 500 solar panel subscriptions across multiple sites shouldn&apos;t require a dedicated spreadsheet warrior. Track installations, bill usage, monitor performance — before the panels even hit the roof.",
     features: [
-      "Solar asset management",
-      "Energy billing automation",
-      "Performance monitoring",
-      "Grid analytics",
-      "Scalable subscriptions",
+      "Installation lifecycle tracking",
+      "Usage-based billing automation",
+      "Panel performance monitoring",
+      "Energy production analytics",
+      "Multi-site management",
     ],
     ...PRODUCT_GRADIENTS.solar,
   },
   {
     name: "Tulin IoT",
-    badge: "Coming Soon",
+    badge: "In Development",
     flagship: false,
-    headline: "Infrastructure, intelligently connected.",
-    desc: "Smart monitoring, device management, and automation for modern community infrastructure.",
+    headline: "Know when something breaks before someone complains.",
+    desc: "Smart sensors for water leaks, gate malfunctions, and power issues. Get alerts before your residents do. Still building this one — IoT is harder than it looks.",
     features: [
-      "Device lifecycle management",
-      "Real-time monitoring",
-      "Automation engine",
-      "Data analytics",
-      "Open API integrations",
+      "Sensor deployment & tracking",
+      "Proactive alert system",
+      "Device health monitoring",
+      "Incident pattern analysis",
+      "Integration with Homes platform",
     ],
     ...PRODUCT_GRADIENTS.iot,
   },
@@ -75,9 +75,9 @@ export function Products() {
             className="text-4xl sm:text-5xl font-bold tracking-tight text-center mb-5 leading-[1.1]"
             style={{ color: tokens.text }}
           >
-            Platforms built for
+            Built for problems
             <br />
-            real-world operations.
+            we&apos;ve actually seen.
           </h2>
         </Reveal>
 
@@ -86,97 +86,190 @@ export function Products() {
             className="text-lg text-center max-w-md mx-auto mb-20 leading-relaxed"
             style={{ color: tokens.textFaint }}
           >
-            Secure, modular, and designed to scale with your community.
+            Each platform solves a specific headache we&apos;ve watched property managers struggle with.
           </p>
         </Reveal>
 
-        <div className="space-y-5">
-          {products.map((product, i) => (
-            <Reveal key={i} delay={i * 100}>
-              <TiltCard className="h-full">
-                <div
-                  className="relative rounded-[28px] p-8 sm:p-10 overflow-hidden group transition-colors duration-700"
-                  style={{
-                    background: tokens.bgCard,
-                    border: `1px solid ${tokens.border}`,
-                  }}
-                >
+        {/* Flagship Product - Full Width */}
+        <Reveal>
+          <div
+            className="relative rounded-[32px] p-10 sm:p-14 overflow-hidden group transition-colors duration-700 mb-6"
+            style={{
+              background: tokens.bgCard,
+              border: `1px solid ${tokens.border}`,
+            }}
+          >
+            <div
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"
+              style={{
+                background: `radial-gradient(ellipse at 30% 50%, rgba(${products[0].accent},${
+                  resolvedTheme === "dark" ? "0.08" : "0.05"
+                }) 0%, transparent 70%)`,
+              }}
+            />
+            <div className="relative z-10">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 mb-10">
+                <div className="flex items-center gap-4">
                   <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"
+                    className={cn(
+                      "w-14 h-14 rounded-2xl bg-gradient-to-br flex items-center justify-center",
+                      products[0].gradient
+                    )}
                     style={{
-                      background: `radial-gradient(ellipse at 30% 50%, rgba(${product.accent},${
-                        resolvedTheme === "dark" ? "0.06" : "0.04"
-                      }) 0%, transparent 70%)`,
+                      boxShadow: resolvedTheme === 'dark'
+                        ? '0 10px 15px -3px rgba(0, 0, 0, 0.4)'
+                        : '0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.1)',
                     }}
-                  />
-                  <div className="relative z-10">
-                    <div className="flex items-center gap-3 mb-10">
-                      <div
-                        className={cn(
-                          "w-11 h-11 rounded-2xl bg-gradient-to-br flex items-center justify-center shadow-lg",
-                          product.gradient
-                        )}
-                      >
-                        <span className="text-white text-sm font-bold">{product.letter}</span>
-                      </div>
-                      <span
-                        className="text-sm font-semibold"
-                        style={{ color: tokens.text, opacity: 0.8 }}
-                      >
-                        {product.name}
-                      </span>
-                      <span
-                        className="text-[10px] font-bold uppercase tracking-[0.1em] px-3 py-1 rounded-full ml-auto"
-                        style={{
-                          background: product.flagship ? tokens.btnBg : tokens.bgSurface,
-                          color: product.flagship ? tokens.btnText : tokens.textFaint,
-                        }}
-                      >
-                        {product.badge}
-                      </span>
-                    </div>
+                  >
+                    <span className="text-2xl">{products[0].icon}</span>
+                  </div>
+                  <div>
                     <h3
-                      className="text-2xl sm:text-3xl font-bold tracking-tight leading-tight mb-4"
+                      className="text-lg font-semibold mb-1"
                       style={{ color: tokens.text }}
                     >
-                      {product.headline}
+                      {products[0].name}
                     </h3>
-                    <p
-                      className="text-base leading-relaxed mb-8 max-w-lg"
-                      style={{ color: tokens.textFaint }}
+                    <span
+                      className="text-[10px] font-bold uppercase tracking-[0.1em] px-3 py-1 rounded-full"
+                      style={{
+                        background: tokens.btnBg,
+                        color: tokens.btnText,
+                      }}
                     >
-                      {product.desc}
-                    </p>
-                    <div className="grid sm:grid-cols-2 gap-x-8 gap-y-3.5">
-                      {product.features.map((feature, j) => (
-                        <div key={j} className="flex items-center gap-3">
-                          <div
-                            className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
-                            style={{ border: `1px solid ${tokens.border}` }}
-                          >
-                            <svg
-                              width="8"
-                              height="8"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="3"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              style={{ color: tokens.textFaint }}
-                            >
-                              <polyline points="20 6 9 17 4 12" />
-                            </svg>
-                          </div>
-                          <span className="text-sm" style={{ color: tokens.textMuted }}>
-                            {feature}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
+                      {products[0].badge}
+                    </span>
                   </div>
                 </div>
-              </TiltCard>
+                <MagBtn
+                  onClick={() => scrollTo("contact")}
+                  strength={0.15}
+                  className="text-sm font-semibold px-6 py-3 rounded-full flex-shrink-0"
+                  style={{ background: tokens.btnBg, color: tokens.btnText }}
+                >
+                  Try it now
+                </MagBtn>
+              </div>
+              <h4
+                className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight mb-6"
+                style={{ color: tokens.text }}
+              >
+                {products[0].headline}
+              </h4>
+              <p
+                className="text-lg leading-relaxed mb-10 max-w-3xl"
+                style={{ color: tokens.textFaint }}
+              >
+                {products[0].desc}
+              </p>
+              <div className="grid sm:grid-cols-3 gap-x-8 gap-y-4">
+                {products[0].features.map((feature, j) => (
+                  <div key={j} className="flex items-center gap-3">
+                    <div
+                      className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0"
+                      style={{
+                        background: resolvedTheme === 'dark' ? tokens.bgSurface : 'rgba(99,102,241,0.1)',
+                      }}
+                    >
+                      <svg
+                        width="10"
+                        height="10"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        style={{
+                          color: resolvedTheme === 'dark' ? tokens.textMuted : 'rgb(99,102,241)',
+                        }}
+                      >
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
+                    <span className="text-sm font-medium" style={{ color: tokens.textMuted }}>
+                      {feature}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Coming Soon Products - Grid */}
+        <div className="grid md:grid-cols-2 gap-5">
+          {products.slice(1).map((product, i) => (
+            <Reveal key={i} delay={(i + 1) * 80}>
+              <div
+                className="relative rounded-[28px] p-8 overflow-hidden h-full transition-all duration-500 hover:scale-[1.02]"
+                style={{
+                  background: tokens.bgSurface,
+                  border: `1px solid ${tokens.border}`,
+                }}
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <div
+                    className={cn(
+                      "w-10 h-10 rounded-xl bg-gradient-to-br flex items-center justify-center",
+                      product.gradient
+                    )}
+                    style={{
+                      boxShadow: resolvedTheme === 'dark'
+                        ? '0 4px 6px -1px rgba(0, 0, 0, 0.3)'
+                        : '0 4px 6px -1px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.1)',
+                    }}
+                  >
+                    <span className="text-lg">{product.icon}</span>
+                  </div>
+                  <span
+                    className="text-[10px] font-bold uppercase tracking-[0.1em] px-2.5 py-1 rounded-full ml-auto"
+                    style={{
+                      background: tokens.bgCard,
+                      color: tokens.textFaint,
+                    }}
+                  >
+                    {product.badge}
+                  </span>
+                </div>
+                <h4
+                  className="text-xl font-bold tracking-tight leading-tight mb-3"
+                  style={{ color: tokens.text }}
+                >
+                  {product.headline}
+                </h4>
+                <p
+                  className="text-sm leading-relaxed mb-6"
+                  style={{ color: tokens.textFaint }}
+                >
+                  {product.desc}
+                </p>
+                <div className="space-y-2.5">
+                  {product.features.slice(0, 3).map((feature, j) => (
+                    <div key={j} className="flex items-center gap-2.5">
+                      <svg
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="flex-shrink-0"
+                        style={{
+                          color: resolvedTheme === 'dark' ? tokens.textFaint : tokens.textMuted,
+                        }}
+                      >
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                      <span className="text-xs" style={{ color: tokens.textMuted }}>
+                        {feature}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </Reveal>
           ))}
         </div>
@@ -195,11 +288,15 @@ export function Products() {
                 <div className="flex items-center gap-3 mb-3">
                   <div
                     className="w-11 h-11 rounded-2xl flex items-center justify-center"
-                    style={{ background: tokens.bgSurface }}
+                    style={{
+                      background: resolvedTheme === 'dark' ? tokens.bgSurface : 'rgba(0,0,0,0.05)',
+                    }}
                   >
                     <span
                       className="text-xs font-mono font-bold"
-                      style={{ color: tokens.textFaint }}
+                      style={{
+                        color: resolvedTheme === 'dark' ? tokens.textFaint : tokens.textMuted,
+                      }}
                     >
                       {"`</>`"}
                     </span>
@@ -222,7 +319,7 @@ export function Products() {
                 className="text-xs font-semibold px-6 py-2.5 rounded-full flex-shrink-0"
                 style={{ color: tokens.textMuted, border: `1px solid ${tokens.border}` }}
               >
-                Learn More
+                Let&apos;s talk
               </MagBtn>
             </div>
           </TiltCard>
