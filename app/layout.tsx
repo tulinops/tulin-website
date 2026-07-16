@@ -5,10 +5,15 @@ import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
 
+const title =
+  "Tulin — SaaS platforms and digital services for communities, energy, and infrastructure"
+const description =
+  "Tulin builds SaaS products for community management, solar operations, and smart infrastructure — plus websites, applications, and digital marketing through Tulin Studio."
+
 export const metadata: Metadata = {
-  title: "Tulin - One platform to run every community",
-  description:
-    "Tulin replaces fragmented tools with a single intelligent platform for gated communities, apartment complexes, and property managers.",
+  metadataBase: new URL("https://tulin.in"),
+  title,
+  description,
   keywords: [
     "community management",
     "property management",
@@ -16,7 +21,22 @@ export const metadata: Metadata = {
     "SaaS platform",
     "IoT",
     "solar energy",
+    "digital marketing",
+    "web development",
+    "application development",
   ],
+  openGraph: {
+    title,
+    description,
+    url: "https://tulin.in",
+    siteName: "Tulin",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
 }
 
 export default function RootLayout({

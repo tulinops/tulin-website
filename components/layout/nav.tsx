@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react"
 import { useTheme } from "@/contexts/theme-context"
-import { scrollTo } from "@/lib/utils"
+import { scrollTo, cn } from "@/lib/utils"
 import { ThemeSwitcher } from "@/components/shared/theme-switcher"
 import { MagBtn } from "@/components/shared/mag-btn"
+import { BRAND_CTA_GRADIENT } from "@/lib/constants"
 
 export function Nav() {
   const { resolvedTheme, tokens } = useTheme()
@@ -17,7 +18,7 @@ export function Nav() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const links = ["Products", "About", "Roadmap", "Contact"]
+  const links = ["Products", "About", "Contact"]
 
   return (
     <nav
@@ -71,8 +72,7 @@ export function Nav() {
           <MagBtn
             onClick={() => scrollTo("contact")}
             strength={0.2}
-            className="text-[11px] font-semibold px-4 py-1.5 rounded-full"
-            style={{ background: tokens.btnBg, color: tokens.btnText }}
+            className={cn(BRAND_CTA_GRADIENT, "text-white text-[11px] font-semibold px-4 py-1.5 rounded-full")}
           >
             Get Started
           </MagBtn>
@@ -81,7 +81,12 @@ export function Nav() {
         {/* Mobile Actions */}
         <div className="md:hidden flex items-center gap-2">
           <ThemeSwitcher />
-          <button className="p-1" onClick={() => setOpen(!open)}>
+          <button
+            className="p-1"
+            onClick={() => setOpen(!open)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+          >
             <div className="w-5 flex flex-col gap-1.5 items-end">
               <span
                 className="block h-px transition-all duration-500 origin-right"
@@ -133,8 +138,7 @@ export function Nav() {
               scrollTo("contact")
               setOpen(false)
             }}
-            className="mt-3 text-sm font-medium px-5 py-3 rounded-full w-full"
-            style={{ background: tokens.btnBg, color: tokens.btnText }}
+            className={cn(BRAND_CTA_GRADIENT, "mt-3 text-white text-sm font-medium px-5 py-3 rounded-full w-full")}
           >
             Get Started
           </button>

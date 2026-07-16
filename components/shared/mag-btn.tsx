@@ -7,6 +7,8 @@ import { TRANSITIONS } from "@/lib/constants"
 interface MagBtnProps {
   children: React.ReactNode
   onClick?: () => void
+  href?: string
+  type?: "button" | "submit" | "reset"
   className?: string
   strength?: number
   style?: React.CSSProperties
@@ -15,11 +17,13 @@ interface MagBtnProps {
 export function MagBtn({
   children,
   onClick,
+  href,
+  type = "button",
   className = "",
   strength = 0.25,
   style = {},
 }: MagBtnProps) {
-  const ref = useRef<HTMLButtonElement>(null)
+  const ref = useRef<HTMLButtonElement & HTMLAnchorElement>(null)
   const [offset, setOffset] = useState({ x: 0, y: 0 })
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -32,19 +36,27 @@ export function MagBtn({
     })
   }
 
+  const sharedProps = {
+    onMouseMove: handleMouseMove,
+    onMouseLeave: () => setOffset({ x: 0, y: 0 }),
+    className: cn(className),
+    style: {
+      ...style,
+      transform: `translate(${offset.x}px, ${offset.y}px)`,
+      transition: `transform 400ms ${TRANSITIONS.smooth}, background-color ${TRANSITIONS.durations.fast}ms, border-color ${TRANSITIONS.durations.fast}ms, color ${TRANSITIONS.durations.fast}ms`,
+    },
+  }
+
+  if (href) {
+    return (
+      <a ref={ref} href={href} target="_blank" rel="noopener noreferrer" {...sharedProps}>
+        {children}
+      </a>
+    )
+  }
+
   return (
-    <button
-      ref={ref}
-      onClick={onClick}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={() => setOffset({ x: 0, y: 0 })}
-      className={cn(className)}
-      style={{
-        ...style,
-        transform: `translate(${offset.x}px, ${offset.y}px)`,
-        transition: `transform 400ms ${TRANSITIONS.smooth}, background-color ${TRANSITIONS.durations.fast}ms, border-color ${TRANSITIONS.durations.fast}ms, color ${TRANSITIONS.durations.fast}ms`,
-      }}
-    >
+    <button ref={ref} type={type} onClick={onClick} {...sharedProps}>
       {children}
     </button>
   )

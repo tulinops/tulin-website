@@ -8,9 +8,15 @@ import { TextReveal } from '@/components/shared/text-reveal'
 import { MagBtn } from '@/components/shared/mag-btn'
 import { TypeWriter } from '@/components/shared/typewriter'
 import { AnimatedGradient } from '@/components/animations/animated-gradient'
-import { TRANSITIONS } from '@/lib/constants'
+import { TRANSITIONS, BRAND_CTA_GRADIENT, PRODUCT_GRADIENTS } from '@/lib/constants'
+import { cn } from '@/lib/utils'
 
-export function Hero() {
+interface HeroProps {
+  email: string
+  onEmailChange: (email: string) => void
+}
+
+export function Hero({ email, onEmailChange }: HeroProps) {
   const { resolvedTheme, tokens } = useTheme()
   const mouse = useMouse()
 
@@ -42,9 +48,9 @@ export function Hero() {
             className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.5rem]  lg:leading-[1.3] font-bold tracking-tight leading-[1.3] mb-5"
             style={{ color: tokens.text }}
           >
-            <TextReveal text="Community management" delay={80} />
+            <TextReveal text="Structured software," delay={80} />
             <br />
-            <TextReveal text="that actually works." delay={280} />
+            <TextReveal text="built for real operations." delay={280} />
           </h1>
 
           {/* Description */}
@@ -53,13 +59,13 @@ export function Hero() {
               className="text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-4"
               style={{ color: tokens.text, opacity: 0.65 }}
             >
-              Tulin handles everything for{' '}
+              Tulin builds the platforms and services behind{' '}
               <TypeWriter
                 words={[
                   'gated communities.',
-                  'apartment complexes.',
-                  'property managers.',
-                  'HOA boards.',
+                  'solar energy operators.',
+                  'growing businesses.',
+                  'smart infrastructure.',
                 ]}
                 style={{ color: tokens.text, fontWeight: 600, opacity: 1 }}
               />
@@ -71,9 +77,9 @@ export function Hero() {
               className="text-sm max-w-lg mx-auto leading-relaxed mb-8"
               style={{ color: tokens.text, opacity: 0.45 }}
             >
-              One place for residents, billing, maintenance tickets, and vendor
-              tracking. No spreadsheets, no integration headaches, no learning
-              curve.
+              Community management, solar operations, smart infrastructure,
+              and custom digital work — four products, one team that
+              actually ships.
             </p>
           </Reveal>
 
@@ -83,6 +89,8 @@ export function Hero() {
               <div className="relative flex-1 w-full">
                 <input
                   type="email"
+                  value={email}
+                  onChange={(e) => onEmailChange(e.target.value)}
                   placeholder="Where should we reach you?"
                   className="w-full backdrop-blur-sm rounded-full px-5 py-2.5 text-sm outline-none transition-all"
                   style={{
@@ -95,8 +103,10 @@ export function Hero() {
               <MagBtn
                 onClick={() => scrollTo('contact')}
                 strength={0.15}
-                className="group text-[13px] font-medium px-5 py-2.5 rounded-full inline-flex items-center gap-2 whitespace-nowrap flex-shrink-0"
-                style={{ background: tokens.btnBg, color: tokens.btnText }}
+                className={cn(
+                  BRAND_CTA_GRADIENT,
+                  'group text-white text-[13px] font-medium px-5 py-2.5 rounded-full inline-flex items-center gap-2 whitespace-nowrap flex-shrink-0',
+                )}
               >
                 Show me how it works
                 <svg
@@ -130,15 +140,113 @@ export function Hero() {
           </Reveal> */}
         </div>
 
-        {/* Dashboard Preview */}
+        {/* Product Collage */}
         <Reveal delay={500}>
-          <div
-            style={{
-              transform: `translate(${parallaxX * 0.4}px, ${parallaxY * 0.4}px)`,
-              transition: `transform ${TRANSITIONS.durations.slow}ms ${TRANSITIONS.smooth}`,
-            }}
-          >
-            <div className="relative max-w-3xl mx-auto">
+          <div className="relative max-w-3xl mx-auto">
+            {/* Floating: Solar mini-chart card */}
+            <div
+              className="hidden lg:block absolute -top-10 -right-16 z-20 w-44 rounded-2xl p-4 backdrop-blur-xl"
+              style={{
+                background: resolvedTheme === 'dark' ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.95)',
+                border: `1px solid ${tokens.borderHover}`,
+                boxShadow: tokens.cardShadow,
+                transform: `rotate(-6deg) translate(${parallaxX * 0.7}px, ${parallaxY * 0.7}px)`,
+                transition: `transform ${TRANSITIONS.durations.slow}ms ${TRANSITIONS.smooth}`,
+              }}
+            >
+              <div className="flex items-center gap-1.5 mb-3">
+                <span className="text-sm">{PRODUCT_GRADIENTS.solar.icon}</span>
+                <span className="text-[10px] font-semibold" style={{ color: tokens.text }}>
+                  Tulin Solar
+                </span>
+              </div>
+              <div className="flex items-end gap-1 h-10 mb-2">
+                {[40, 55, 45, 70, 60, 85, 100].map((h, i) => (
+                  <div
+                    key={i}
+                    className="flex-1 rounded-t-sm"
+                    style={{
+                      height: `${h}%`,
+                      background: `rgba(${PRODUCT_GRADIENTS.solar.accent},${0.35 + (h / 100) * 0.5})`,
+                    }}
+                  />
+                ))}
+              </div>
+              <div className="text-[9px] font-bold" style={{ color: `rgb(${PRODUCT_GRADIENTS.solar.accent})` }}>
+                +18% output this month
+              </div>
+            </div>
+
+            {/* Floating: IoT status card */}
+            <div
+              className="hidden lg:block absolute -bottom-8 -left-20 z-20 w-40 rounded-2xl p-4 backdrop-blur-xl"
+              style={{
+                background: resolvedTheme === 'dark' ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.95)',
+                border: `1px solid ${tokens.borderHover}`,
+                boxShadow: tokens.cardShadow,
+                transform: `rotate(5deg) translate(${parallaxX * -0.6}px, ${parallaxY * -0.6}px)`,
+                transition: `transform ${TRANSITIONS.durations.slow}ms ${TRANSITIONS.smooth}`,
+              }}
+            >
+              <div className="flex items-center gap-1.5 mb-3">
+                <span className="text-sm">{PRODUCT_GRADIENTS.iot.icon}</span>
+                <span className="text-[10px] font-semibold" style={{ color: tokens.text }}>
+                  Tulin IoT
+                </span>
+              </div>
+              <div className="space-y-1.5">
+                {[
+                  { label: 'Gate Sensor', ok: true },
+                  { label: 'Water Meter', ok: true },
+                  { label: 'Panel A', ok: false },
+                ].map((d, i) => (
+                  <div key={i} className="flex items-center gap-1.5">
+                    <span
+                      className="text-[9px] leading-none"
+                      style={{ color: d.ok ? `rgb(${PRODUCT_GRADIENTS.iot.accent})` : '#f59e0b' }}
+                    >
+                      {d.ok ? '●' : '▲'}
+                    </span>
+                    <span className="text-[9px]" style={{ color: tokens.textMuted }}>
+                      {d.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Floating: four-product icon cluster */}
+            <div
+              className="hidden lg:flex absolute top-1/2 -right-24 z-20 -translate-y-1/2 gap-2"
+              style={{
+                transform: `translateY(-50%) translate(${parallaxX * -0.5}px, ${parallaxY * 0.5}px)`,
+                transition: `transform ${TRANSITIONS.durations.slow}ms ${TRANSITIONS.smooth}`,
+              }}
+            >
+              {(['homes', 'solar', 'iot', 'studio'] as const).map((key, i) => (
+                <div
+                  key={key}
+                  className={cn(
+                    'w-9 h-9 rounded-xl bg-gradient-to-br flex items-center justify-center',
+                    PRODUCT_GRADIENTS[key].gradient,
+                  )}
+                  style={{
+                    boxShadow: `0 6px 16px -2px rgba(${PRODUCT_GRADIENTS[key].accent},0.5)`,
+                    transform: `translateY(${i % 2 === 0 ? '-6px' : '6px'})`,
+                  }}
+                >
+                  <span className="text-sm">{PRODUCT_GRADIENTS[key].icon}</span>
+                </div>
+              ))}
+            </div>
+
+            <div
+              style={{
+                transform: `translate(${parallaxX * 0.4}px, ${parallaxY * 0.4}px)`,
+                transition: `transform ${TRANSITIONS.durations.slow}ms ${TRANSITIONS.smooth}`,
+              }}
+            >
+              <div className="relative">
               <div
                 className="absolute -inset-8 rounded-[32px] blur-2xl"
                 style={{
@@ -192,7 +300,7 @@ export function Hero() {
                         className="text-[10px] font-medium"
                         style={{ color: tokens.textFaint }}
                       >
-                        app.tulin.io/dashboard
+                        app.tulin.in/dashboard
                       </span>
                     </div>
                   </div>
@@ -337,6 +445,7 @@ export function Hero() {
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </Reveal>
       </div>

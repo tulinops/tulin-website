@@ -35,5 +35,8 @@ export const getThemeTokens = (mode: ThemeMode) => {
     gradientOpacity: isDark ? 0.2 : 0.15,
     footerBorder: isDark ? "rgba(255,255,255,0.04)" : "rgba(0,0,0,0.04)",
     selection: isDark ? "rgba(99,102,241,0.3)" : "rgba(99,102,241,0.15)",
+    cardShadow: isDark
+      ? "0 12px 40px -8px rgba(0,0,0,0.45)"
+      : "0 12px 40px -8px rgba(0,0,0,0.08)",
   }
 }

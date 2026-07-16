@@ -29,11 +29,11 @@ export function AnimatedGradient() {
     window.addEventListener("resize", resize)
 
     const colors = [
-      [42, 155, 55],     // Green from gradient start
-      [87, 199, 133],    // Lighter green from gradient middle
-      [237, 221, 83],    // Yellow from gradient end
-      [64, 177, 94],     // Intermediate green
-      [162, 210, 108],   // Light yellow-green
+      [79, 70, 229],     // indigo-600
+      [59, 130, 246],    // blue-500
+      [20, 184, 166],    // teal-500
+      [99, 102, 241],    // indigo-500
+      [45, 156, 168],    // deeper teal
     ]
 
     const blobs = colors.map((col) => ({

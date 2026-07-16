@@ -38,6 +38,15 @@ export const PRODUCT_GRADIENTS = {
     letter: 'I',
     icon: '📡',
   },
+  studio: {
+    gradient: 'from-violet-500 to-purple-600',
+    accent: '139,92,246', // rgb(139,92,246) = violet-500
+    letter: 'S',
+    icon: '🎨',
+  },
 } as const
 
 export type ProductKey = keyof typeof PRODUCT_GRADIENTS
+
+// Shared vivid gradient for primary CTAs (Hero, Nav "Get Started", flagship "Try it now")
+export const BRAND_CTA_GRADIENT = 'bg-gradient-to-r from-blue-600 to-teal-500'

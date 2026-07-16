@@ -1,22 +1,33 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useTheme } from "@/contexts/theme-context"
 import { Reveal } from "@/components/shared/reveal"
 import { MagBtn } from "@/components/shared/mag-btn"
 import { Orb } from "@/components/shared/orb"
 
-export function Contact() {
+interface ContactProps {
+  initialEmail?: string
+}
+
+export function Contact({ initialEmail = "" }: ContactProps) {
   const { resolvedTheme, tokens } = useTheme()
 
   const [form, setForm] = useState({
     name: "",
     email: "",
     company: "",
+    interest: "",
     message: "",
   })
   const [submitted, setSubmitted] = useState(false)
   const [focused, setFocused] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (initialEmail) {
+      setForm((prev) => ({ ...prev, email: initialEmail }))
+    }
+  }, [initialEmail])
 
   const handleChange = (field: string, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }))
@@ -87,21 +98,26 @@ export function Contact() {
                 className="text-4xl sm:text-4xl font-bold tracking-tight mb-5 leading-tight"
                 style={{ color: tokens.text }}
               >
-                Let&apos;s fix what&apos;s
+                Let&apos;s fix what&apos;s broken —
                 <br />
-                broken in your workflow.
+                or build what&apos;s next.
               </h2>
               <p
                 className="text-base leading-relaxed mb-14"
                 style={{ color: tokens.textFaint }}
               >
-                Tell us what&apos;s broken in your current setup. We&apos;ll show you how Tulin fixes it —
-                or be honest if it doesn&apos;t.
+                Tell us what you&apos;re dealing with — a broken process, a product idea, or a
+                website that needs to exist. We&apos;ll tell you honestly whether Tulin&apos;s the
+                right fit.
               </p>
               <div className="space-y-8">
                 {[
-                  { label: "Email", value: "hello@tulin.io" },
-                  { label: "Focus", value: "Gated Communities · Apartments · IoT · Energy" },
+                  { label: "Email", value: "hello@tulin.in" },
+                  {
+                    label: "Focus",
+                    value:
+                      "Community Management · Solar & Energy · Smart Infrastructure · Digital Services",
+                  },
                 ].map((item, i) => (
                   <div key={i}>
                     <p
@@ -125,12 +141,16 @@ export function Contact() {
               style={{
                 background: tokens.bgCard,
                 border: `1px solid ${tokens.border}`,
-                boxShadow: `0 8px 40px ${
-                  resolvedTheme === "dark" ? "rgba(0,0,0,0.2)" : "rgba(0,0,0,0.03)"
-                }`,
+                boxShadow: tokens.cardShadow,
               }}
             >
-                <div className="space-y-6">
+                <form
+                  className="space-y-6"
+                  onSubmit={(e) => {
+                    e.preventDefault()
+                    setSubmitted(true)
+                  }}
+                >
                   {[
                     { key: "name", label: "Name", placeholder: "Your name", type: "text" },
                     {
@@ -141,8 +161,8 @@ export function Contact() {
                     },
                     {
                       key: "company",
-                      label: "Community",
-                      placeholder: "Which community are you managing?",
+                      label: "Company / Community",
+                      placeholder: "Which company or community are you with?",
                       type: "text",
                     },
                   ].map((field) => (
@@ -174,6 +194,36 @@ export function Contact() {
                       className="block text-[9px] font-bold tracking-[0.2em] uppercase mb-2"
                       style={{ color: tokens.textGhost }}
                     >
+                      Interested In
+                    </label>
+                    <select
+                      required
+                      value={form.interest}
+                      onChange={(e) => handleChange("interest", e.target.value)}
+                      onFocus={() => setFocused("interest")}
+                      onBlur={() => setFocused(null)}
+                      className="w-full bg-transparent text-sm py-3.5 border-b outline-none transition-all duration-500"
+                      style={{
+                        color: form.interest ? tokens.text : tokens.textFaint,
+                        borderColor: focused === "interest" ? tokens.text : tokens.border,
+                      }}
+                    >
+                      <option value="" disabled>
+                        Select a product/service
+                      </option>
+                      <option value="Tulin Homes">Tulin Homes</option>
+                      <option value="Tulin Solar">Tulin Solar</option>
+                      <option value="Tulin IoT">Tulin IoT</option>
+                      <option value="Tulin Studio">Tulin Studio</option>
+                      <option value="General">Not sure / General inquiry</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label
+                      className="block text-[9px] font-bold tracking-[0.2em] uppercase mb-2"
+                      style={{ color: tokens.textGhost }}
+                    >
                       Message
                     </label>
                     <textarea
@@ -192,14 +242,14 @@ export function Contact() {
                   </div>
 
                   <MagBtn
-                    onClick={() => setSubmitted(true)}
+                    type="submit"
                     strength={0.15}
                     className="w-full text-sm font-medium py-3.5 rounded-full mt-2"
                     style={{ background: tokens.btnBg, color: tokens.btnText }}
                   >
                     Let&apos;s talk
                   </MagBtn>
-                </div>
+                </form>
               </div>
           </Reveal>
         </div>

@@ -34,7 +34,7 @@ export function About() {
               >
                 We&apos;re fixing what&apos;s broken
                 <br />
-                in community management.
+                in day-to-day operations.
               </h2>
             </div>
           </Reveal>
@@ -45,8 +45,9 @@ export function About() {
                 className="text-lg leading-relaxed"
                 style={{ color: tokens.textFaint }}
               >
-                Started after watching too many property managers drown in spreadsheets and WhatsApp groups.
-                We think software should make their lives easier, not add another subscription to ignore.
+                Started after watching too many teams drown in spreadsheets, WhatsApp groups, and
+                tools that don&apos;t talk to each other. We think software should make operations
+                easier, not add another subscription to ignore.
               </p>
             </div>
           </Reveal>
@@ -58,7 +59,7 @@ export function About() {
             {
               title: "What We Believe",
               icon: <Eye size={18} className="text-indigo-400" strokeWidth={1.5} />,
-              desc: "Property managers shouldn't need a computer science degree to run their communities. Good software is invisible — it just works.",
+              desc: "Businesses shouldn't need a computer science degree to run their operations. Good software is invisible — it just works.",
             },
             {
               title: "What We Build",
@@ -69,7 +70,7 @@ export function About() {
                   <circle cx="12" cy="12" r="2" />
                 </svg>
               ),
-              desc: "Software that solves actual problems instead of adding new ones. Starting with communities, expanding to solar and IoT when we get it right.",
+              desc: "Software and digital services that solve actual problems instead of adding new ones — community management, solar operations, smart infrastructure, and custom builds.",
             },
           ].map((card, i) => (
             <Reveal key={i} delay={i * 80}>
@@ -78,6 +79,7 @@ export function About() {
                 style={{
                   background: tokens.bgCard,
                   border: `1px solid ${tokens.border}`,
+                  boxShadow: tokens.cardShadow,
                 }}
               >
                 <div className="flex items-center gap-3 mb-4">
@@ -104,77 +106,6 @@ export function About() {
             </Reveal>
           ))}
         </div>
-
-        {/* Stats Grid */}
-        <Reveal delay={200}>
-          <div
-            className="rounded-[28px] p-10 sm:p-12"
-            style={{
-              background: tokens.bgCard,
-              border: `1px solid ${tokens.border}`,
-            }}
-          >
-            <div className="grid sm:grid-cols-2 gap-12">
-              {/* Revenue Model */}
-              <div>
-                <h3
-                  className="text-sm font-bold tracking-wider uppercase mb-6"
-                  style={{ color: tokens.textMuted }}
-                >
-                  How We Fund This
-                </h3>
-                <div
-                  className="flex rounded-full overflow-hidden h-3 mb-5"
-                  style={{ background: tokens.bgSurface }}
-                >
-                  <div className="rounded-full" style={{ width: "70%", background: tokens.btnBg }} />
-                </div>
-                <div className="flex justify-between mb-6">
-                  <span className="text-sm font-semibold" style={{ color: tokens.text }}>
-                    SaaS — 70%
-                  </span>
-                  <span className="text-sm" style={{ color: tokens.textFaint }}>
-                    Consulting — 30%
-                  </span>
-                </div>
-                <p className="text-sm leading-relaxed" style={{ color: tokens.textFaint }}>
-                  We do consulting to fund product development. Eventually the products will pay for themselves.
-                  That&apos;s the plan, anyway.
-                </p>
-              </div>
-
-              {/* Goals */}
-              <div>
-                <h3
-                  className="text-sm font-bold tracking-wider uppercase mb-6"
-                  style={{ color: tokens.textMuted }}
-                >
-                  Next 3–5 Years
-                </h3>
-                <div className="space-y-4">
-                  {[
-                    "100+ communities running on Tulin",
-                    "Recurring revenue we can count on",
-                    "Known for solving real problems",
-                    "Less consulting, more product work",
-                  ].map((goal, j) => (
-                    <div key={j} className="flex items-start gap-3">
-                      <span
-                        className="text-xs font-bold mt-0.5"
-                        style={{ color: tokens.textFaint }}
-                      >
-                        {j + 1}.
-                      </span>
-                      <span className="text-sm leading-relaxed" style={{ color: tokens.textMuted }}>
-                        {goal}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </Reveal>
       </div>
     </section>
   )
